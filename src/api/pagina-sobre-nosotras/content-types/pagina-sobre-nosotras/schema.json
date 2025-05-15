@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_sobre_nosotrass",
+  "info": {
+    "singularName": "pagina-sobre-nosotras",
+    "pluralName": "pagina-sobre-nosotrass",
+    "displayName": "Pagina Sobre Nosotras",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "mision": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "vision": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "valores": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pagina.valor",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}
