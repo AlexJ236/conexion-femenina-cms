@@ -519,6 +519,70 @@ export interface ApiCampanaCampana extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPaginaInicioPaginaInicio extends Struct.SingleTypeSchema {
+  collectionName: 'pagina_inicios';
+  info: {
+    displayName: 'PaginaInicio';
+    pluralName: 'pagina-inicios';
+    singularName: 'pagina-inicio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    firmaIntroduccion: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    imagenPortadaHero: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pagina-inicio.pagina-inicio'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    subtituloHero: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    textoIntroduccion: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloHero: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloIntroduccion: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPaginaSobreNosotrasPaginaSobreNosotras
   extends Struct.SingleTypeSchema {
   collectionName: 'pagina_sobre_nosotrass';
@@ -1213,6 +1277,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::actividad-recreativa.actividad-recreativa': ApiActividadRecreativaActividadRecreativa;
       'api::campana.campana': ApiCampanaCampana;
+      'api::pagina-inicio.pagina-inicio': ApiPaginaInicioPaginaInicio;
       'api::pagina-sobre-nosotras.pagina-sobre-nosotras': ApiPaginaSobreNosotrasPaginaSobreNosotras;
       'api::programa.programa': ApiProgramaPrograma;
       'api::textos-globales.textos-globales': ApiTextosGlobalesTextosGlobales;
