@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "pagina_sobre_nosotrass",
+  "collectionName": "nosotrass",
   "info": {
-    "singularName": "pagina-sobre-nosotras",
-    "pluralName": "pagina-sobre-nosotrass",
-    "displayName": "Pagina Sobre Nosotras",
+    "singularName": "nosotras",
+    "pluralName": "nosotrass",
+    "displayName": "Nosotras",
     "description": ""
   },
   "options": {
@@ -24,18 +24,13 @@
         }
       }
     },
-    "vision": {
-      "type": "blocks",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "valores": {
       "type": "component",
       "repeatable": true,
-      "component": "pagina.valor",
+      "component": "pagina.valor"
+    },
+    "vision": {
+      "type": "blocks",
       "pluginOptions": {
         "i18n": {
           "localized": true

@@ -9,7 +9,6 @@ export interface PaginaValor extends Struct.ComponentSchema {
   };
   attributes: {
     descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
-    icono: Schema.Attribute.String;
     titulo: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

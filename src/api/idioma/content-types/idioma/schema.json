@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "idiomas",
+  "info": {
+    "singularName": "idioma",
+    "pluralName": "idiomas",
+    "displayName": "Idioma"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombreCompleto": {
+      "type": "string",
+      "required": true
+    },
+    "codigoLocale": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "banderaEmoji": {
+      "type": "string"
+    },
+    "iconoBandera": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "habilitado": {
+      "type": "boolean",
+      "default": true
+    },
+    "ordenAparicion": {
+      "type": "integer"
+    }
+  }
+}

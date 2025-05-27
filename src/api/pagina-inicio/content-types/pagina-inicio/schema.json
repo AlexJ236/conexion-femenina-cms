@@ -4,7 +4,8 @@
   "info": {
     "singularName": "pagina-inicio",
     "pluralName": "pagina-inicios",
-    "displayName": "PaginaInicio"
+    "displayName": "PaginaInicio",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -56,6 +57,17 @@
       }
     },
     "imagenPortadaHero": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "gifFondoHero": {
       "allowedTypes": [
         "images",
         "files",

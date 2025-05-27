@@ -519,9 +519,92 @@ export interface ApiCampanaCampana extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiIdiomaIdioma extends Struct.CollectionTypeSchema {
+  collectionName: 'idiomas';
+  info: {
+    displayName: 'Idioma';
+    pluralName: 'idiomas';
+    singularName: 'idioma';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    banderaEmoji: Schema.Attribute.String;
+    codigoLocale: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    habilitado: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    iconoBandera: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::idioma.idioma'
+    > &
+      Schema.Attribute.Private;
+    nombreCompleto: Schema.Attribute.String & Schema.Attribute.Required;
+    ordenAparicion: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNosotrasNosotras extends Struct.SingleTypeSchema {
+  collectionName: 'nosotrass';
+  info: {
+    description: '';
+    displayName: 'Nosotras';
+    pluralName: 'nosotrass';
+    singularName: 'nosotras';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nosotras.nosotras'
+    >;
+    mision: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    valores: Schema.Attribute.Component<'pagina.valor', true>;
+    vision: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
 export interface ApiPaginaInicioPaginaInicio extends Struct.SingleTypeSchema {
   collectionName: 'pagina_inicios';
   info: {
+    description: '';
     displayName: 'PaginaInicio';
     pluralName: 'pagina-inicios';
     singularName: 'pagina-inicio';
@@ -544,6 +627,9 @@ export interface ApiPaginaInicioPaginaInicio extends Struct.SingleTypeSchema {
           localized: true;
         };
       }>;
+    gifFondoHero: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     imagenPortadaHero: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -580,57 +666,6 @@ export interface ApiPaginaInicioPaginaInicio extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiPaginaSobreNosotrasPaginaSobreNosotras
-  extends Struct.SingleTypeSchema {
-  collectionName: 'pagina_sobre_nosotrass';
-  info: {
-    description: '';
-    displayName: 'Pagina Sobre Nosotras';
-    pluralName: 'pagina-sobre-nosotrass';
-    singularName: 'pagina-sobre-nosotras';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::pagina-sobre-nosotras.pagina-sobre-nosotras'
-    >;
-    mision: Schema.Attribute.Blocks &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    valores: Schema.Attribute.Component<'pagina.valor', true> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    vision: Schema.Attribute.Blocks &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
   };
 }
 
@@ -746,6 +781,9 @@ export interface ApiTextosGlobalesTextosGlobales
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::textos-globales.textos-globales'
+    >;
+    logoPrincipal: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
     >;
     mensaje_footer: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
@@ -1277,8 +1315,9 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::actividad-recreativa.actividad-recreativa': ApiActividadRecreativaActividadRecreativa;
       'api::campana.campana': ApiCampanaCampana;
+      'api::idioma.idioma': ApiIdiomaIdioma;
+      'api::nosotras.nosotras': ApiNosotrasNosotras;
       'api::pagina-inicio.pagina-inicio': ApiPaginaInicioPaginaInicio;
-      'api::pagina-sobre-nosotras.pagina-sobre-nosotras': ApiPaginaSobreNosotrasPaginaSobreNosotras;
       'api::programa.programa': ApiProgramaPrograma;
       'api::textos-globales.textos-globales': ApiTextosGlobalesTextosGlobales;
       'plugin::content-releases.release': PluginContentReleasesRelease;
